@@ -80,7 +80,7 @@ a { color: inherit; }
 
 /* Signature: the stepped bar from the banner */
 .bar { position: relative; height: 12px; background: transparent; }
-.bar::before { content: ""; position: absolute; left: 0; top: 0; height: 7px; width: calc(100% - 72px); background: var(--red); }
+.bar::before { content: ""; position: absolute; left: 0; top: 0; height: 7px; width: 100%; background: var(--red); }
 .bar::after { content: ""; position: absolute; left: 0; bottom: 0; height: 5px; width: 100%; background: var(--red-dark); }
 
 /* Header */
@@ -205,12 +205,12 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 .form-msg.error { color: var(--red-deep); }
 
 /* Page header (inner pages) */
-.page-head { background: var(--stone); color: var(--ink); padding-top: clamp(56px, 7vw, 96px); overflow: hidden; }
-.page-head .wrap { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px 48px; align-items: end; }
-.page-head .copy { display: flex; flex-direction: column; gap: 22px; align-items: flex-start; padding-bottom: clamp(48px, 6vw, 80px); }
+.page-head { background: var(--stone); color: var(--ink); padding-top: clamp(56px, 7vw, 96px); overflow: hidden; position: relative; --leaf-h: clamp(180px, 21vw, 300px); }
+.page-head .wrap { display: block; }
+.page-head .copy { display: flex; flex-direction: column; gap: 22px; align-items: flex-start; padding-bottom: clamp(48px, 6vw, 80px); padding-right: calc(var(--leaf-h) * 0.55 + 32px); }
 .page-head .lead { color: var(--muted); font-size: 20px; }
 .page-head .meta { font-family: var(--display); font-size: 20px; color: var(--red-deep); }
-.page-head .leaf { height: clamp(180px, 21vw, 300px); width: auto; align-self: end; }
+.page-head .leaf { position: absolute; right: 0; bottom: 0; height: var(--leaf-h); width: auto; max-width: none; }
 
 /* Program */
 .tabbar { border-bottom: 1px solid var(--line); background: var(--white); position: sticky; top: calc(env(safe-area-inset-top, 0px) + 85px); z-index: 20; }
@@ -348,8 +348,8 @@ section { padding-block: clamp(64px, 9vw, 120px); }
   .hero { grid-template-columns: 1fr; row-gap: 28px; padding-top: 0; }
   .hero-leaf img { height: 200px; }
   .hero-info { padding-left: var(--gutter); }
-  .page-head .wrap { grid-template-columns: 1fr; }
   .page-head .leaf { display: none; }
+  .page-head .copy { padding-right: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
