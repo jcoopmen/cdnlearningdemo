@@ -125,6 +125,22 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 .notice h2 { font-size: clamp(30px, 3.4vw, 46px); font-weight: 600; }
 .notice p { font-size: 19px; color: #FFE1E3; margin-top: 6px; }
 
+/* Photos */
+.pic { background: #E2E1DD; position: relative; overflow: hidden; }
+.pic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pic.wide { aspect-ratio: 21 / 9; margin-top: clamp(48px, 6vw, 80px); }
+.pic.tall { aspect-ratio: 4 / 5; }
+.pic.redtab::before { content: ""; position: absolute; top: 0; right: 0; width: 34%; height: 8px; background: var(--red); z-index: 1; }
+.quote-grid { display: grid; grid-template-columns: 5fr 1fr 6fr; align-items: center; text-align: left; }
+.quote-grid .pic { aspect-ratio: 4 / 3; }
+.quote-grid figure { grid-column: 3; margin: 0; }
+.quote-grid blockquote { margin: 12px 0 20px; }
+.band-photo { display: grid !important; grid-template-columns: 5fr 7fr; gap: 0 !important; padding: 0 !important; align-items: stretch !important; background: var(--stone); }
+.band-photo .pic { min-height: 340px; }
+.band-photo .copy { padding: clamp(40px, 5vw, 72px); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 16px; }
+.split .pic { aspect-ratio: 4 / 3; margin-top: 32px; }
+.photo-credit { font-size: 13px; color: #8F8B84; }
+
 /* Home: intro */
 .statement { font-size: clamp(36px, 5.2vw, 72px); font-weight: 500; line-height: 1.02; max-width: 15em; }
 .intro-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 48px; margin-top: clamp(40px, 5vw, 64px); align-items: start; }
@@ -299,6 +315,11 @@ section { padding-block: clamp(64px, 9vw, 120px); }
   .keynote-grid, .sponsor-grid, .visit-grid, .split { grid-template-columns: 1fr; gap: 36px; }
   .keynote-text, .logos, .visit-copy, .split > :last-child { grid-column: auto; }
   .photo { aspect-ratio: 16 / 11; }
+  .quote-grid { grid-template-columns: 1fr; gap: 32px; }
+  .quote-grid figure { grid-column: auto; }
+  .band-photo { grid-template-columns: 1fr; }
+  .band-photo .pic { min-height: 0; aspect-ratio: 16 / 9; }
+  .pic.wide { aspect-ratio: 16 / 9; }
   .days, .tiers { grid-template-columns: 1fr; }
   .tiers { gap: 20px; }
   .day, .day:first-child { padding: 24px 0 8px; border-left: 0; border-top: 3px solid var(--ink); }
@@ -394,6 +415,7 @@ section { padding-block: clamp(64px, 9vw, 120px); }
           <a class="more" href="#program">See the program</a>
         </div>
       </div>
+      <div class="pic wide"><img src="https://images.unsplash.com/photo-1603478804503-dc909c7f5ce5?auto=format&amp;fit=crop&amp;w=2000&amp;q=75" alt="Adults listening attentively during a professional workshop" loading="lazy" onerror="this.remove()"></div>
       <div class="offer">
         <div>
           <h3 class="h-md">Pre-conference workshops</h3>
@@ -416,7 +438,7 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 
   <section class="stone" id="keynote">
     <div class="wrap keynote-grid">
-      <div class="photo">Keynote speaker photo</div>
+      <div class="pic tall redtab"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Headshot of the keynote speaker" loading="lazy" onerror="this.remove()" style="object-position:50% 25%"></div>
       <div class="keynote-text">
         <p class="label">Keynote address</p>
         <h2 class="h-xl">[Keynote speaker name]</h2>
@@ -460,10 +482,11 @@ section { padding-block: clamp(64px, 9vw, 120px); }
   </section>
 
   <section class="quote stone">
-    <div class="wrap">
-      <div class="mark" aria-hidden="true">“</div>
-      <figure style="margin:0">
-        <blockquote>…how easy it was to network with others.</blockquote>
+    <div class="wrap quote-grid">
+      <div class="pic"><img src="https://images.unsplash.com/photo-1775163560631-6ff15eb2fa1f?auto=format&amp;fit=crop&amp;w=1400&amp;q=75" alt="People talking and mingling at an indoor event" loading="lazy" onerror="this.remove()"></div>
+      <figure>
+        <div class="mark" aria-hidden="true" style="text-align:left">“</div>
+        <blockquote style="max-width:none">…how easy it was to network with others.</blockquote>
         <figcaption><cite>Past conference attendee</cite></figcaption>
       </figure>
     </div>
@@ -490,7 +513,7 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 
   <section class="stone" id="visit">
     <div class="wrap visit-grid">
-      <div class="photo light">Venue or Niagara Falls photo</div>
+      <div class="pic" style="aspect-ratio:4/3"><img src="https://images.unsplash.com/photo-1559344465-ac6ad8e59943?auto=format&amp;fit=crop&amp;w=1600&amp;q=75" alt="Aerial view of Niagara Falls" loading="lazy" onerror="this.remove()"></div>
       <div class="visit-copy">
         <h2 class="h-lg">Niagara Falls, Ontario</h2>
         <p class="muted">[Venue name], [street address]. The hotel room block and booking details will be posted here.</p>
@@ -534,10 +557,12 @@ section { padding-block: clamp(64px, 9vw, 120px); }
       <div id="panels"></div>
     </div>
   </section>
-  <div class="band">
-    <div class="wrap">
-      <div><h2>Want to present in 2027?</h2><p class="muted">Speaking proposals are open until 11 December 2026.</p></div>
-      <a class="btn btn-red" href="#speak">Submit a proposal</a>
+  <div class="band" style="padding-block:0">
+    <div class="wrap" style="padding-block:clamp(48px,6vw,80px)">
+      <div class="band-photo" style="width:100%">
+        <div class="pic"><img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&amp;fit=crop&amp;w=1400&amp;q=75" alt="People seated at tables in a large hall watching a presentation" loading="lazy" onerror="this.remove()"></div>
+        <div class="copy" style="background:var(--white)"><h2>Want to present in 2027?</h2><p class="muted">Speaking proposals are open until 11 December 2026.</p><a class="btn btn-red" href="#speak">Submit a proposal</a></div>
+      </div>
     </div>
   </div>
 </div>
@@ -592,7 +617,7 @@ section { padding-block: clamp(64px, 9vw, 120px); }
 
   <section>
     <div class="wrap split">
-      <h2 class="h-lg">What reviewers look for</h2>
+      <div><h2 class="h-lg">What reviewers look for</h2><div class="pic"><img src="https://images.unsplash.com/photo-1576085898323-218337e3e43c?auto=format&amp;fit=crop&amp;w=1200&amp;q=75" alt="A woman speaking at a podium to an audience" loading="lazy" onerror="this.remove()"></div></div>
       <ul class="checks">
         <li>Practical takeaways participants can apply in their own work</li>
         <li>Real examples, evidence, or results from projects you have led</li>
@@ -668,10 +693,12 @@ section { padding-block: clamp(64px, 9vw, 120px); }
       <p class="note">All prices in Canadian dollars. [Tax note.]</p>
     </div>
   </section>
-  <div class="band">
-    <div class="wrap">
-      <div><h2>Registering a team?</h2><p class="muted">Group rates are available for [number] or more attendees from the same organization.</p></div>
-      <button class="btn btn-dark" type="button" data-demo="the group rates contact form">Ask about group rates</button>
+  <div class="band" style="padding-block:0">
+    <div class="wrap" style="padding-block:clamp(48px,6vw,80px)">
+      <div class="band-photo" style="width:100%">
+        <div class="pic"><img src="https://images.unsplash.com/photo-1560439514-4e9645039924?auto=format&amp;fit=crop&amp;w=1400&amp;q=75" alt="Groups of attendees talking in a busy conference lobby" loading="lazy" onerror="this.remove()"></div>
+        <div class="copy" style="background:var(--white)"><h2>Registering a team?</h2><p class="muted">Group rates are available for [number] or more attendees from the same organization.</p><button class="btn btn-dark" type="button" data-demo="the group rates contact form">Ask about group rates</button></div>
+      </div>
     </div>
   </div>
   <section>
@@ -719,7 +746,7 @@ section { padding-block: clamp(64px, 9vw, 120px); }
       <div><h2>About</h2><ul><li><a href="#home/about">About the conference</a></li><li><a href="#home/visit">Plan your visit</a></li><li><a href="#" data-demo="the committee page">Committee</a></li><li><a href="#" data-demo="the contact page">Contact</a></li></ul></div>
     </div>
     <div class="legal">
-      <span>© Canadian Learning Conference</span>
+      <span>© Canadian Learning Conference<br><span class="photo-credit">Placeholder stock photography from Unsplash.</span></span>
       <nav aria-label="Legal"><a href="#" data-demo="the privacy policy">Privacy policy</a><a href="#" data-demo="the accessibility statement">Accessibility</a><a href="#" data-demo="the FAQs">FAQs</a></nav>
     </div>
   </div>
